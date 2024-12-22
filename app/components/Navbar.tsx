@@ -1,23 +1,21 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const Navbar: React.FC = () => {
-  const [language, setLanguage] = useState("en");
-  useEffect(() => {
-    console.log(language);
-  });
+  const [language, setLanguage] = useState<string>("en");
   return (
     <div
       className={`flex w-full ${
         language === "en" ? "flex-row-reverse" : ""
-      } justify-around pt-10`}
+      } justify-around pt-10 absolute top-0`}
     >
       {/* Language Selector */}
       <div>
         <select
-          className="w-[70px] text-sm font-bold"
+          className="w-[70px] text-sm font-bold bg-transparent"
           onChange={(e) => setLanguage(e.target.value)}
+          defaultValue={"en"}
         >
           <option value="ar" className="font-bold">
             عربي
