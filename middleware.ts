@@ -15,12 +15,11 @@ export function middleware(request: NextRequest) {
         (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
     );
 
-    if (pathnameHasLocale) return;
+    if (pathnameHasLocale || pathname === "/favicon.ico") return;
 
     // Redirect if there is no locale
     const locale = getLocale();
     request.nextUrl.pathname = `/${locale}${pathname}`;
-
 
     return NextResponse.redirect(request.nextUrl);
 }

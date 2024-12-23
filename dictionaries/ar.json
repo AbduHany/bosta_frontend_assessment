@@ -6,5 +6,8 @@
   "page": {
     "title": "الصفحة الرئيسية",
     "description": "تتبع طلبك"
+  },
+  "searchbar": {
+    "placeholder": "أدخل معرف التتبع"
   }
 }

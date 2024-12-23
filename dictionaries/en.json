@@ -6,5 +6,8 @@
   "page": {
     "title": "Home",
     "description": "Track Your Order"
+  },
+  "searchbar": {
+    "placeholder": "Enter Tracking ID"
   }
 }
