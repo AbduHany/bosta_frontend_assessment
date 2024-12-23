@@ -5,14 +5,20 @@ import ArabicLogo from "@/public/Bosta Logo Arabic.png";
 import EnglishLogo from "@/public/Bosta Logo English.png";
 import { Search } from "lucide-react";
 import { DictionaryType } from "@/types/dictionaryType";
+import SearchBar from "./SearchBar";
 
 const Navbar = ({
   lang,
   messages,
+  trackingID,
+  setTrackingID,
 }: {
   lang: string;
   messages: DictionaryType;
+  trackingID: string;
+  setTrackingID: React.Dispatch<React.SetStateAction<string>>;
 }) => {
+  const [showModal, setShowModal] = React.useState(false);
   return (
     <div className="pt-10 px-4 flex flex-col gap-4 justify-center items-center absolute top-0 w-full">
       <div
@@ -21,7 +27,28 @@ const Navbar = ({
         } `}
       >
         {/* Language Selector */}
-        <div>
+        <div
+          className={`flex gap-2 items-center ${
+            lang === "en" ? "" : "flex-row-reverse"
+          }`}
+        >
+          {/* Modal for small screens */}
+          <button className="sm:hidden" onClick={() => setShowModal(true)}>
+            <Search className="w-[30px]" />
+          </button>
+          {showModal && (
+            <div
+              className="sm:hidden fixed  inset-14 flex items-start z-10 justify-center"
+              onClick={() => setShowModal(false)}
+            >
+              <div
+                className="bg-white p-4 rounded border-2"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <SearchBar />
+              </div>
+            </div>
+          )}
           <select
             className="w-full text-sm font-bold bg-transparent"
             onChange={
@@ -48,26 +75,6 @@ const Navbar = ({
           height={100}
           className="min-w-[100px] h-auto"
         />
-      </div>
-
-      {/* Search bar for smaller screens */}
-      <div className="relative sm:hidden max-w-[400px] w-full">
-        <input
-          className={`rounded-md
-            text-sm h-8 w-full border border-gray-300
-            focus:outline-none focus:ring-2 focus:ring-blue-500
-            ${lang === "en" ? "pl-10" : "pr-10"}
-            `}
-          dir={`${lang === "en" ? "ltr" : "rtl"}`}
-          placeholder={messages.searchbar.placeholder}
-        />
-        <button
-          className={`absolute top-0 ${
-            lang === "en" ? "left-2" : "right-2"
-          } flex items-center justify-center w-8 h-8 text-gray-600 hover:text-blue-500`}
-        >
-          <Search className="w-4" />
-        </button>
       </div>
     </div>
   );
