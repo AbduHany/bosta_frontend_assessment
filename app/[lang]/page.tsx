@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Navbar from "../components/Navbar";
 import { getDictionary } from "./dictionaries";
+import MapPin from "@/public/MapPin.png";
 
 export async function generateMetadata({
   params,
@@ -30,10 +31,10 @@ export default async function Home({
     <>
       {/* Blue Backdrop */}
       <div className="bg-[#F3FAFB] h-[338px] relative" />
-      <Navbar />
+      <Navbar lang={lang} />
       <div className="w-full">
         <Image
-          src="/MapPin.png"
+          src={MapPin}
           height={200}
           width={200}
           alt="3d Icon of a Map Pin"

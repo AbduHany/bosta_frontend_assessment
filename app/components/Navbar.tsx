@@ -1,21 +1,26 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
+import ArabicLogo from "@/public/Bosta Logo Arabic.png";
+import EnglishLogo from "@/public/Bosta Logo English.png";
 
-const Navbar: React.FC = () => {
-  const [language, setLanguage] = useState<string>("en");
+const Navbar = ({ lang }: { lang: string }) => {
   return (
     <div
       className={`flex w-full ${
-        language === "en" ? "flex-row-reverse" : ""
+        lang === "en" ? "flex-row-reverse" : ""
       } justify-around pt-10 absolute top-0`}
     >
       {/* Language Selector */}
       <div>
         <select
           className="w-[70px] text-sm font-bold bg-transparent"
-          onChange={(e) => setLanguage(e.target.value)}
-          defaultValue={"en"}
+          onChange={
+            lang === "en"
+              ? () => (window.location.href = "/ar")
+              : () => (window.location.href = "/en")
+          }
+          defaultValue={lang}
         >
           <option value="ar" className="font-bold">
             عربي
@@ -28,11 +33,7 @@ const Navbar: React.FC = () => {
 
       {/* Logo */}
       <Image
-        src={
-          language === "en"
-            ? "/Bosta Logo English.png"
-            : "/Bosta Logo Arabic.png"
-        }
+        src={lang === "en" ? EnglishLogo : ArabicLogo}
         alt="logo"
         width={100}
         height={100}
