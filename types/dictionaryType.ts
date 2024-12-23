@@ -9,5 +9,6 @@ export type DictionaryType = {
     };
     searchbar: {
         placeholder: string;
+        modalMessage: string;
     };
 };

@@ -37,7 +37,12 @@ export default function Home({
         trackingID={trackingID}
         setTrackingID={setTrackingID}
       />
-      <HeroSection messages={t} />
+      <HeroSection
+        lang={lang}
+        messages={t}
+        trackingID={trackingID}
+        setTrackingID={setTrackingID}
+      />
     </>
   );
 }

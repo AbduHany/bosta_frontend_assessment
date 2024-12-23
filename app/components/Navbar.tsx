@@ -38,14 +38,22 @@ const Navbar = ({
           </button>
           {showModal && (
             <div
-              className="sm:hidden fixed  inset-14 flex items-start z-10 justify-center"
+              className="sm:hidden fixed inset-[100px] flex items-start z-10 justify-center"
               onClick={() => setShowModal(false)}
             >
               <div
-                className="bg-white p-4 rounded border-2"
+                className="bg-white p-[32px] rounded border-2"
                 onClick={(e) => e.stopPropagation()}
               >
-                <SearchBar />
+                <p className="mb-2" dir={`${lang === "en" ? "ltr" : "rtl"}`}>
+                  {messages.searchbar.modalMessage}
+                </p>
+                <SearchBar
+                  messages={messages}
+                  lang={lang}
+                  trackingID={trackingID}
+                  setTrackingID={setTrackingID}
+                />
               </div>
             </div>
           )}

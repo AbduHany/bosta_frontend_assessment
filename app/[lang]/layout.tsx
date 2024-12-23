@@ -1,5 +1,5 @@
 import "../globals.css";
-import { cairo } from "../fonts";
+import { cairo, poppins } from "../fonts";
 
 export default async function RootLayout({
   children,
@@ -11,7 +11,13 @@ export default async function RootLayout({
   const { lang } = await params;
   return (
     <html lang={lang}>
-      <body className={`${cairo.className} antialiased`}>{children}</body>
+      <body
+        className={`${
+          lang === "en" ? poppins.className : cairo.className
+        } antialiased`}
+      >
+        {children}
+      </body>
     </html>
   );
 }

@@ -4,7 +4,17 @@ import React from "react";
 import MapPin from "@/public/MapPin.png";
 import SearchBar from "./SearchBar";
 
-const HeroSection = ({ messages }: { messages: DictionaryType }) => {
+const HeroSection = ({
+  lang,
+  messages,
+  trackingID,
+  setTrackingID,
+}: {
+  lang: string;
+  messages: DictionaryType;
+  trackingID: string;
+  setTrackingID: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   return (
     <div className="w-full">
       <Image
@@ -19,7 +29,12 @@ const HeroSection = ({ messages }: { messages: DictionaryType }) => {
         <p className="mt-2 sm:hidden px-2">{messages.hero.description}</p>
       </div>
       <div className="hidden sm:block absolute right-[calc(50%-228px)] top-[304px]">
-        <SearchBar />
+        <SearchBar
+          lang={lang}
+          trackingID={trackingID}
+          setTrackingID={setTrackingID}
+          messages={messages}
+        />
       </div>
     </div>
   );

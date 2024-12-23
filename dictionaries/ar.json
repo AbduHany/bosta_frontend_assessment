@@ -8,6 +8,7 @@
     "description": "تتبع طلبك"
   },
   "searchbar": {
-    "placeholder": "أدخل معرف التتبع"
+    "placeholder": "معرف التتبع",
+    "modalMessage": "يرجى إدخال رقم تتبع صحيح."
   }
 }
