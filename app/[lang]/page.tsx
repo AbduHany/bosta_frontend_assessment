@@ -5,6 +5,7 @@ import HeroSection from "../components/HeroSection";
 import Navbar from "../components/Navbar";
 import { getDictionary } from "./dictionaries";
 import { DictionaryType } from "@/types/dictionaryType";
+import { Toaster } from "sonner";
 
 export default function Home({
   params,
@@ -13,22 +14,26 @@ export default function Home({
 }) {
   const [lang, setLang] = useState<string>("en");
   const [t, setT] = useState<DictionaryType | null>(null);
-  const [trackingID, setTrackingID] = useState<string>("");
 
+  const [trackingID, setTrackingID] = useState<string>("");
   useEffect(() => {
     async function fetchData() {
+      const urlParams = new URLSearchParams(window.location.search);
+      setTrackingID(urlParams.get("trackingid") || "");
+
       const { lang } = await params;
       setLang(lang);
       const dictionary = await getDictionary(lang as "en" | "ar");
       setT(dictionary);
     }
     fetchData();
-  }, [params]);
+  }, [params, trackingID]);
 
   if (!t) return null; // or a loading spinner
 
   return (
     <>
+      <Toaster />
       {/* Blue Backdrop */}
       <div className="bg-[#F3FAFB] h-[338px] relative" />
       <Navbar

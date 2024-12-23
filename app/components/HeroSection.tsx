@@ -25,7 +25,9 @@ const HeroSection = ({
         className="absolute top-[136px] right-[calc(50%-100px)]"
       />
       <div className="absolute top-[216px] w-full text-center">
-        <h1 className="font-bold text-[32px]">{messages.hero.title}</h1>
+        <h1 className="font-bold text-[24px] sm:text-[32px]">
+          {messages.hero.title}
+        </h1>
         <p className="mt-2 sm:hidden px-2">{messages.hero.description}</p>
       </div>
       <div className="hidden sm:block absolute right-[calc(50%-228px)] top-[304px]">

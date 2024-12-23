@@ -38,11 +38,11 @@ const Navbar = ({
           </button>
           {showModal && (
             <div
-              className="sm:hidden fixed inset-[100px] flex items-start z-10 justify-center"
+              className="sm:hidden fixed inset-0 top-[80px] flex items-start z-10 justify-center"
               onClick={() => setShowModal(false)}
             >
               <div
-                className="bg-white p-[32px] rounded border-2"
+                className="bg-white p-[20px] rounded border-2"
                 onClick={(e) => e.stopPropagation()}
               >
                 <p className="mb-2" dir={`${lang === "en" ? "ltr" : "rtl"}`}>

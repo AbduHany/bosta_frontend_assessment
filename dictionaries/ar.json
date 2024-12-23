@@ -9,6 +9,10 @@
   },
   "searchbar": {
     "placeholder": "معرف التتبع",
-    "modalMessage": "يرجى إدخال رقم تتبع صحيح."
+    "modalMessage": "يرجى إدخال رقم تتبع صحيح"
+  },
+  "errorMessages": {
+    "invalidTrackingID": "معرف التتبع غير صحيح",
+    "missingTrackingID": "معرف التتبع مطلوب"
   }
 }

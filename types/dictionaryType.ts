@@ -11,4 +11,8 @@ export type DictionaryType = {
         placeholder: string;
         modalMessage: string;
     };
+    errorMessages: {
+        invalidTrackingID: string;
+        missingTrackingID: string;
+    };
 };

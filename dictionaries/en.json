@@ -9,6 +9,10 @@
   },
   "searchbar": {
     "placeholder": "Tracking No.",
-    "modalMessage": "Please enter tracking number."
+    "modalMessage": "Please enter tracking number"
+  },
+  "errorMessages": {
+    "invalidTrackingID": "Invalid Tracking ID",
+    "missingTrackingID": "Tracking ID is required"
   }
 }
