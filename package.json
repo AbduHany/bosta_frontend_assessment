@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.5.2",
+    "@react-pdf/renderer": "^4.1.5",
     "antd": "^5.22.6",
     "axios": "^1.7.9",
+    "file-saver": "^2.0.5",
     "lucide-react": "^0.469.0",
     "next": "15.1.2",
     "react": "^19.0.0",
@@ -19,6 +22,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/file-saver": "^2.0.7",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

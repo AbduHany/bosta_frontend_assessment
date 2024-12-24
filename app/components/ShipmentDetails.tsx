@@ -9,6 +9,8 @@ import { DictionaryType } from "@/types/dictionaryType";
 import TrackingDetails from "./TrackingDetails";
 import { createDateString, groupEventsByDay } from "@/helpers/helperFunctions";
 import { greenCheck } from "@/helpers/svgs";
+import { CopyOutlined, WhatsAppOutlined } from "@ant-design/icons";
+import ExportPDFButton from "./ExportPDFButton";
 
 const ShipmentDetails = ({
   trackingID,
@@ -103,6 +105,37 @@ const ShipmentDetails = ({
                     )}
                   </p>
                 )}
+
+              {/* Share Link */}
+              <div className="flex flex-col gap-4 mt-4 sm:flex-row ">
+                {/* Copy Link Button */}
+                <button
+                  className="text-center px-2 h-[32px] leading-[32px] border rounded-md hover:bg-[#E30613] hover:text-white"
+                  onClick={() => {
+                    navigator.clipboard.writeText(window.location.href);
+                    toast.success("Link copied to clipboard", {
+                      richColors: true,
+                    });
+                  }}
+                >
+                  <CopyOutlined />
+                </button>
+
+                {/* WhatsApp Share Button */}
+                <a
+                  href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
+                    window.location.href
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-center  px-2 h-[32px] leading-[32px] border rounded-md hover:bg-[#E30613] hover:text-white"
+                >
+                  <WhatsAppOutlined />
+                </a>
+
+                {/* Export PDF Button */}
+                <ExportPDFButton shipmentDetails={shipmentDetails} />
+              </div>
             </div>
 
             {/* Delivery Timeline */}
