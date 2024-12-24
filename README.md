@@ -72,11 +72,6 @@ npm run build
 npm start
 ```
 
-## Assumptions
-
-- The expected delivery date is replaced with the final status (e.g., Delivered or Returned) when the shipment reaches a terminal state.
-- The mock API provides accurate and real-time data for testing.
-
 ## API Integration
 
 The application integrates with the Bosta mock API:
@@ -84,38 +79,3 @@ The application integrates with the Bosta mock API:
 - Endpoint: `https://tracking.bosta.co/shipments/track/:trackingNumber`
 - Required Header: `x-requested-by: Bosta`
 - Sample Tracking Numbers: `36406704`, `69171493`, `7234258`, `9442984`, `1094442`
-
-## Evaluation Criteria (Addressed)
-
-1. **Adherence to Design:**
-
-   - Implemented all design elements as per the Figma file.
-
-2. **Code Quality:**
-
-   - Modular, clean, and well-documented code.
-
-3. **User Experience:**
-
-   - Smooth, intuitive, and responsive interface.
-
-4. **Error Handling:**
-
-   - Comprehensive edge case management and fallback UI.
-
-5. **Performance Optimization:**
-
-   - Efficient rendering and API handling.
-
-6. **Creativity:**
-   - Added extra features such as sharing via WhatsApp, copying URL, and exporting details as a PDF.
-
-## Deliverables
-
-1. GitHub repository containing the complete project.
-2. Live URL for accessing the application.
-3. This README file for setup and feature documentation.
-
----
-
-Thank you for reviewing my submission! Feel free to reach out for any clarifications or further improvements.
