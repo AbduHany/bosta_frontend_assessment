@@ -20,7 +20,7 @@ export default async function RootLayout({
         {/* Antd Configuration */}
         <ConfigProvider
           theme={{
-            token: { colorPrimary: "#0098A5", colorTextDescription: "#000000" },
+            token: { colorPrimary: "#0098A5" },
           }}
         >
           {children}

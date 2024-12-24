@@ -22,5 +22,16 @@ export type DictionaryType = {
         Returned: string;
         "Received at warehouse": string;
         "Out for delivery": string;
+        expectedOn: string;
+        expectedIn: string;
+        expectedToday: string;
+        expectedAgo: string;
     };
+    shipmentSteps: {
+        shipmentCreated: string;
+        pickedUp: string;
+        processing: string;
+        outForDelivery: string;
+        delivered: string;
+    }
 };

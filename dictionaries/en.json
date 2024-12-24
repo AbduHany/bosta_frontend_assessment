@@ -21,6 +21,17 @@
     "Delivered": "Delivered",
     "Returned": "Canceled",
     "Received at warehouse": "Received at warehouse",
-    "Out for delivery": "Out for delivery"
+    "Out for delivery": "Out for delivery",
+    "expectedOn": "Your order is expected to arrive on ",
+    "expectedIn": "Your order is expected to arrive in {{days}} day{{suffix}}.",
+    "expectedToday": "Your order is expected to arrive today.",
+    "expectedAgo": "Your order was expected to arrive {{days}} day{{suffix}} ago."
+  },
+  "shipmentSteps": {
+    "shipmentCreated": "Shipment Created",
+    "pickedUp": "Picked Up",
+    "processing": "Processing",
+    "outForDelivery": "Out for Delivery",
+    "delivered": "Delivered"
   }
 }

@@ -49,7 +49,7 @@ export default function Home({
         trackingID={trackingID}
         setTrackingID={setTrackingID}
       />
-      <ShipmentDetails trackingID={trackingID} messages={t} />
+      <ShipmentDetails lang={lang} trackingID={trackingID} messages={t} />
     </>
   );
 }

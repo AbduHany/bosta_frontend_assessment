@@ -21,6 +21,17 @@
     "Delivered": "تم التوصيل",
     "Returned": "ألغيت",
     "Received at warehouse": "في محطة الوصول",
-    "Out for delivery": "جاري تسليم الأوردر"
+    "Out for delivery": "جاري تسليم الأوردر",
+    "expectedOn": "من المتوقع ان يصل طلبك يوم ",
+    "expectedIn": "من المتوقع أن يصل طلبك خلال {{days}} يوم{{suffix}}.",
+    "expectedToday": "من المتوقع أن يصل طلبك اليوم.",
+    "expectedAgo": "كان من المتوقع أن يصل طلبك قبل {{days}} يوم{{suffix}}."
+  },
+  "shipmentSteps": {
+    "shipmentCreated": "تم انشاء الشحنة",
+    "pickedUp": "تم استلام الشحنة",
+    "processing": "تجهيز",
+    "outForDelivery": "خارج للتوصيل",
+    "delivered": "تم التوصيل"
   }
 }

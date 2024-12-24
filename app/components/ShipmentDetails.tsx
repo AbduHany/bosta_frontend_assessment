@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Steps } from "antd";
 import { Circle } from "lucide-react";
 import axios from "axios";
@@ -7,16 +7,47 @@ import { ShipmentDetailsType } from "@/types/shipmentDetailsType";
 import { toast } from "sonner";
 import { DictionaryType } from "@/types/dictionaryType";
 
+function createDateString(
+  date: string,
+  lang: string,
+  monthFormat: "short" | "long"
+) {
+  if (lang === "ar") {
+    return new Date(date).toLocaleDateString("ar-EG", {
+      year: "numeric",
+      month: monthFormat,
+      day: "numeric",
+    });
+  } else
+    return new Date(date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: monthFormat,
+      day: "numeric",
+    });
+}
+
 const ShipmentDetails = ({
   trackingID,
   messages,
+  lang,
 }: {
   trackingID: string;
   messages: DictionaryType;
+  lang: string;
 }) => {
   const [shipmentDetails, setShipmentDetails] =
     useState<ShipmentDetailsType | null>();
+
+  const activeStepRef = useRef(0);
+
   useEffect(() => {
+    const shippingStepCodes = [
+      "Shipment Created",
+      "Picked Up",
+      "Received at warehouse",
+      "Out for delivery",
+      "Delivered",
+    ];
     if (trackingID) {
       toast.loading("Fetching shipment details");
 
@@ -30,6 +61,10 @@ const ShipmentDetails = ({
         .then((data) => {
           setShipmentDetails(data);
           console.log(data);
+          activeStepRef.current = shippingStepCodes.indexOf(
+            data.CurrentStatus.state
+          );
+          console.log(activeStepRef.current);
           toast.dismiss();
           toast.success("Shipment details fetched successfully", {
             richColors: true,
@@ -66,16 +101,19 @@ const ShipmentDetails = ({
     <>
       {!shipmentDetails ? (
         <div className="w-full h-[calc(100vh-338px)] flex justify-center items-center">
-          Enter ID to track your shipment 📦
+          {messages.shipmentMessages.noID}
         </div>
       ) : (
         <div className={`w-full flex justify-center mt-16`}>
           <div className="mx-3 w-full max-w-[968px]">
             {/* Shipment details */}
-            <div className="p-4 border-t border-l border-r border-[#E4E7EC] rounded-t-xl">
+            <div className="p-4 border border-[#E4E7EC] rounded-t-xl">
+              {/* Shipment ID */}
               <p className="text-[12px] text-[#667085]">
                 {messages.shipmentMessages.order} #{trackingID}
               </p>
+
+              {/* Shipment Status */}
               <h2 className="text-[24px] font-bold">
                 {
                   messages.shipmentMessages[
@@ -84,41 +122,119 @@ const ShipmentDetails = ({
                   ]
                 }
               </h2>
-              <p className="text-[14px] text-[#667085]">
-                Your order is expected to arrive within 2 -3 working days.
-              </p>
+
+              {/* Expected Delivery */}
+              {shipmentDetails.CurrentStatus.state !== "Delivered" &&
+                shipmentDetails.CurrentStatus.state !== "Returned" && (
+                  <p className="text-[14px] text-[#667085]">
+                    {messages.shipmentMessages.expectedOn}
+                    {createDateString(
+                      shipmentDetails.PromisedDate,
+                      lang,
+                      "long"
+                    )}
+                  </p>
+                )}
             </div>
 
             {/* Delivery Timeline */}
-            <div className="p-4 border border-[#E4E7EC] rounded-b-xl ">
-              <Steps
-                size="small"
-                responsive
-                current={2}
-                status="wait"
-                labelPlacement="vertical"
-              >
-                <Steps.Step
-                  title="Shipment Created"
-                  subTitle="Saturday Nov. 10"
-                  icon={greenCheck}
-                ></Steps.Step>
-                <Steps.Step
-                  title="Picked Up"
-                  subTitle="Saturday Nov. 10"
-                  icon={greenCheck}
-                ></Steps.Step>
-                <Steps.Step title="Processing" icon={greenCheck}></Steps.Step>
-                <Steps.Step
-                  icon={<Circle className="size-5" />}
-                  title="Out For Delivery"
-                ></Steps.Step>
-                <Steps.Step
-                  icon={<Circle className="size-5" />}
-                  title="Delivered"
-                ></Steps.Step>
-              </Steps>
-            </div>
+            {shipmentDetails.CurrentStatus.state !== "Returned" && (
+              <div className="p-4 border-l border-r border-b border-[#E4E7EC] rounded-b-xl ">
+                <Steps
+                  size="small"
+                  responsive
+                  current={activeStepRef.current + 1}
+                  status="wait"
+                  labelPlacement="vertical"
+                >
+                  <Steps.Step
+                    title={messages.shipmentSteps.shipmentCreated}
+                    description={createDateString(
+                      shipmentDetails.CreateDate,
+                      lang,
+                      "short"
+                    )}
+                    icon={greenCheck}
+                  ></Steps.Step>
+                  <Steps.Step
+                    title={messages.shipmentSteps.pickedUp}
+                    icon={
+                      activeStepRef.current < 1 ? (
+                        <Circle className="size-5" />
+                      ) : (
+                        greenCheck
+                      )
+                    }
+                    disabled={activeStepRef.current < 1}
+                    description={
+                      activeStepRef.current === 1 &&
+                      createDateString(
+                        shipmentDetails.PromisedDate,
+                        lang,
+                        "short"
+                      )
+                    }
+                  ></Steps.Step>
+                  <Steps.Step
+                    title={messages.shipmentSteps.processing}
+                    icon={
+                      activeStepRef.current < 2 ? (
+                        <Circle className="size-5" />
+                      ) : (
+                        greenCheck
+                      )
+                    }
+                    disabled={activeStepRef.current < 2}
+                    description={
+                      activeStepRef.current === 2 &&
+                      createDateString(
+                        shipmentDetails.PromisedDate,
+                        lang,
+                        "short"
+                      )
+                    }
+                  ></Steps.Step>
+                  <Steps.Step
+                    icon={
+                      activeStepRef.current < 3 ? (
+                        <Circle className="size-5" />
+                      ) : (
+                        greenCheck
+                      )
+                    }
+                    disabled={activeStepRef.current < 3}
+                    title={messages.shipmentSteps.outForDelivery}
+                    description={
+                      activeStepRef.current === 3 &&
+                      createDateString(
+                        shipmentDetails.PromisedDate,
+                        lang,
+                        "short"
+                      )
+                    }
+                  ></Steps.Step>
+                  <Steps.Step
+                    icon={
+                      activeStepRef.current < 4 ? (
+                        <Circle className="size-5" />
+                      ) : (
+                        greenCheck
+                      )
+                    }
+                    disabled={activeStepRef.current < 4}
+                    title={messages.shipmentSteps.delivered}
+                    description={
+                      activeStepRef.current === 4 &&
+                      createDateString(
+                        shipmentDetails.PromisedDate,
+                        lang,
+                        "short"
+                      )
+                    }
+                  ></Steps.Step>
+                </Steps>
+              </div>
+            )}
           </div>
         </div>
       )}

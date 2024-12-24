@@ -13,3 +13,7 @@
     --foreground: #ededed;
   }
 }
+
+.ant-steps-item-description {
+  color: black !important;
+}
