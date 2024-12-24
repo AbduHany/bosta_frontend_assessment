@@ -33,5 +33,8 @@ export type DictionaryType = {
         processing: string;
         outForDelivery: string;
         delivered: string;
-    }
+    };
+    trackingDetails: {
+        title: string;
+    };
 };

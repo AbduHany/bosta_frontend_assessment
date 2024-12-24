@@ -30,8 +30,11 @@
   "shipmentSteps": {
     "shipmentCreated": "تم انشاء الشحنة",
     "pickedUp": "تم استلام الشحنة",
-    "processing": "تجهيز",
+    "processing": "جاري تجهيز",
     "outForDelivery": "خارج للتوصيل",
     "delivered": "تم التوصيل"
+  },
+  "trackingDetails": {
+    "title": "تفاصيل التتبع"
   }
 }

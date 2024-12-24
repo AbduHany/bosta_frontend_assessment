@@ -33,5 +33,8 @@
     "processing": "Processing",
     "outForDelivery": "Out for Delivery",
     "delivered": "Delivered"
+  },
+  "trackingDetails": {
+    "title": "Tracking details"
   }
 }

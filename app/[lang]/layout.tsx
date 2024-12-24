@@ -20,7 +20,13 @@ export default async function RootLayout({
         {/* Antd Configuration */}
         <ConfigProvider
           theme={{
-            token: { colorPrimary: "#0098A5" },
+            token: {
+              colorPrimary: "#0098A5",
+              fontFamily: lang === "en" ? "poppins" : "cairo",
+            },
+            components: {
+              Steps: { dotCurrentSize: 16, dotSize: 16 },
+            },
           }}
         >
           {children}
