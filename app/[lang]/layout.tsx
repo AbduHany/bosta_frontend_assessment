@@ -1,5 +1,6 @@
 import "../globals.css";
 import { cairo, poppins } from "../fonts";
+import { ConfigProvider } from "antd";
 
 export default async function RootLayout({
   children,
@@ -16,7 +17,14 @@ export default async function RootLayout({
           lang === "en" ? poppins.className : cairo.className
         } antialiased`}
       >
-        {children}
+        {/* Antd Configuration */}
+        <ConfigProvider
+          theme={{
+            token: { colorPrimary: "#0098A5", colorTextDescription: "#000000" },
+          }}
+        >
+          {children}
+        </ConfigProvider>
       </body>
     </html>
   );

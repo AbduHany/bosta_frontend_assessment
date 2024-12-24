@@ -14,5 +14,13 @@
   "errorMessages": {
     "invalidTrackingID": "Invalid Tracking ID",
     "missingTrackingID": "Tracking ID is required"
+  },
+  "shipmentMessages": {
+    "order": "ORDER",
+    "noID": "Enter ID to track your shipment 📦",
+    "Delivered": "Delivered",
+    "Returned": "Canceled",
+    "Received at warehouse": "Received at warehouse",
+    "Out for delivery": "Out for delivery"
   }
 }

@@ -59,11 +59,13 @@ const Navbar = ({
           )}
           <select
             className="w-full text-sm font-bold bg-transparent"
-            onChange={
-              lang === "en"
-                ? () => (window.location.href = "/ar")
-                : () => (window.location.href = "/en")
-            }
+            onChange={(e) => {
+              const urlParams = new URLSearchParams(window.location.search);
+              const newUrl = new URL(window.location.href);
+              newUrl.pathname = `/${e.target.value}`;
+              newUrl.search = urlParams.toString();
+              window.location.href = newUrl.toString();
+            }}
             defaultValue={lang}
           >
             <option value="ar" className="font-bold">

@@ -15,4 +15,12 @@ export type DictionaryType = {
         invalidTrackingID: string;
         missingTrackingID: string;
     };
+    shipmentMessages: {
+        order: string;
+        noID: string;
+        Delivered: string;
+        Returned: string;
+        "Received at warehouse": string;
+        "Out for delivery": string;
+    };
 };

@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import { getDictionary } from "./dictionaries";
 import { DictionaryType } from "@/types/dictionaryType";
 import { Toaster } from "sonner";
+import ShipmentDetails from "../components/ShipmentDetails";
 
 export default function Home({
   params,
@@ -48,6 +49,7 @@ export default function Home({
         trackingID={trackingID}
         setTrackingID={setTrackingID}
       />
+      <ShipmentDetails trackingID={trackingID} messages={t} />
     </>
   );
 }
