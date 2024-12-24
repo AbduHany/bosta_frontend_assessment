@@ -57,10 +57,10 @@ Follow these steps to set up and run the application locally:
 
 ```bash
 # Clone the repository
-git clone <URL TO REPO>
+git clone https://github.com/AbduHany/bosta_frontend_assessment.git
 
 # Navigate to the project directory
-cd <name of repo>
+cd bosta_frontend_assessment
 
 # Install dependencies
 npm install
