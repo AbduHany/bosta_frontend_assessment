@@ -23,9 +23,10 @@ const ShipmentDetails = ({
 }) => {
   const [shipmentDetails, setShipmentDetails] =
     useState<ShipmentDetailsType | null>();
-  const [groupedEvents, setGroupedEvents] = useState<
-    Record<string, TransitEvent[]>
-  >({});
+  const [groupedEvents, setGroupedEvents] = useState<Record<
+    string,
+    TransitEvent[]
+  > | null>(null);
 
   const activeStepRef = useRef(0);
 
@@ -53,7 +54,8 @@ const ShipmentDetails = ({
             data.CurrentStatus.state
           );
           console.log(data);
-          setGroupedEvents(groupEventsByDay(data.TransitEvents));
+          if (data.TransitEvents)
+            setGroupedEvents(groupEventsByDay(data.TransitEvents));
           toast.dismiss();
           toast.success("Shipment details fetched successfully", {
             richColors: true,
@@ -80,7 +82,8 @@ const ShipmentDetails = ({
             <div className="p-4 border border-[#E4E7EC] rounded-t-xl">
               {/* Shipment ID */}
               <p className="text-[12px] text-[#667085]">
-                {messages.shipmentMessages.order} #{trackingID}
+                {messages.shipmentMessages.order} #
+                {shipmentDetails.TrackingNumber}
               </p>
 
               {/* Shipment Status */}
@@ -237,7 +240,8 @@ const ShipmentDetails = ({
               </div>
             )}
             {shipmentDetails.CurrentStatus.state !== "Delivered" &&
-              shipmentDetails.CurrentStatus.state !== "Returned" && (
+              shipmentDetails.CurrentStatus.state !== "Returned" &&
+              groupedEvents && (
                 <TrackingDetails
                   shipmentDetails={shipmentDetails}
                   messages={messages}
